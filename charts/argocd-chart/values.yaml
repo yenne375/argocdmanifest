@@ -6,7 +6,7 @@
 replicaCount: 1
 image:
   repository: yenne1993/argocd-demo
-  tag: d5fcf49
+  tag: ""
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 nameOverride: ""
