@@ -183,7 +183,7 @@ affinity: {}
 replicaCount: 1
 image:
   repository: yenne1993/argocd-demo
-  tag: 67b0ba6598458efd9546b6b692d83097d495663e
+  tag: 7bda2ced72496f0f632e5a3c8c3228574cffa2ea
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 nameOverride: ""
