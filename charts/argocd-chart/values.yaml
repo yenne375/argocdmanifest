@@ -3,12 +3,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
-
 replicaCount: 1
 image:
   repository: yenne1993/argocd-demo
-  tag: 301b82509779e504c1a0a4debe67d594bbb7ee37
+  tag: c2faf59c7761d100e4c9d3ffd50ae827180ea3eb
   pullPolicy: IfNotPresent
 imagePullSecrets: []
 nameOverride: ""
