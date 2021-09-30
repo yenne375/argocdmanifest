@@ -1,35 +1,32 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "example-chart.fullname" . }}
+  name: {{ include "node-app.fullname" . }}
   labels:
-    {{- include "example-chart.labels" . | nindent 4 }}
+    app.kubernetes.io/name: {{ include "node-app.name" . }}
+    helm.sh/chart: {{ include "node-app.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "example-chart.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: {{ include "node-app.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        {{- include "example-chart.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/name: {{ include "node-app.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
-      serviceAccountName: {{ include "example-chart.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:
