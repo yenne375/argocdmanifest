@@ -4,7 +4,7 @@
 
 image:
   repository: yenne1993/node-app
-  tag: "151"
+  tag: "152"
   pullPolicy: IfNotPresent
 nameOverride: ""
 fullnameOverride: ""
