@@ -1,19 +1,12 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: {{ include "node-app.fullname" . }}
-  labels:
-    app.kubernetes.io/name: {{ include "node-app.name" . }}
-    helm.sh/chart: {{ include "node-app.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  name: nodeapp
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
-    app.kubernetes.io/name: {{ include "node-app.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: nodeapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: {{ .Values.service.type }}
